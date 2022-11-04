@@ -26,6 +26,12 @@ public class SquirrelNoiseTest {
                 .isEqualTo(2562153792L);
         assertThat(squirrelNoise5(238198231,129389182))
                 .isEqualTo(2277364147L);
+        assertThat(squirrelNoise5(-5,0))
+                .isEqualTo(3761360600L);
+        assertThat(squirrelNoise5(-19238,28382))
+                .isEqualTo(2417081196L);
+
+
     }
 
     @Test

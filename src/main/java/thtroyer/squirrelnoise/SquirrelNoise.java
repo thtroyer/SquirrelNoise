@@ -8,11 +8,11 @@ public class SquirrelNoise {
      * Since Java has no unsigned int used in the original algorithm, a long is being used, which is
      * regularly masked back to the original 32-bit int size.
      *
-     * @param positionX unsigned int value between 0 and 4294967295
+     * @param positionX signed int value for position
      * @param seed unsigned int value between 0 and 4294967295
      * @return random value between 0 and 4294967295
      */
-    public static long squirrelNoise5(long positionX, long seed )
+    public static long squirrelNoise5(int positionX, long seed )
     {
         if (positionX < 0 || positionX > 4294967295L) {
             throw new RuntimeException("positionX out of range.");
