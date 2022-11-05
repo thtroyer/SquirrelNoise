@@ -4,8 +4,8 @@ public class SquirrelNoise {
     private static double ONE_OVER_MAX_UINT = (1.0 / (double) Long.parseLong("ffffffff", 16));
 
     /**
-     * Based on SquirrelNoise5 by Squirrel Eiserloh, implemented in C++.
-     * Original version available here: * http://eiserloh.net/noise/SquirrelNoise5.hpp
+     * Based on squirrelNoise5 by Squirrel Eiserloh, implemented in C++.
+     * Original version available here: * http://eiserloh.net/noise/squirrelNoise5.hpp
      * <p>
      * Since Java has no unsigned int used in the original algorithm, a long is being used, which is
      * regularly masked back to the original 32-bit int size.
@@ -63,86 +63,81 @@ public class SquirrelNoise {
 
     //todo: test
 
-    public static long get1dNoiseUint(int positionX, long seed) {
-        return squirrelNoise5(positionX, seed);
+    /**
+     * @return long, but returns 32bit unsigned in range, 0-4294967295
+     */
+    public static long get1dNoise(int indexX, long seed) {
+        return squirrelNoise5(indexX, seed);
     }
 
-    //    //todo: implement
-//
-//    //-----------------------------------------------------------------------------------------------
-//    constexpr unsigned int Get3dNoiseUint( int indexX, int indexY, int indexZ, unsigned int seed )
-//    {
-//        constexpr int PRIME1 = 198491317; // Large prime number with non-boring bits
-//        constexpr int PRIME2 = 6542989; // Large prime number with distinct and non-boring bits
-//        return SquirrelNoise5( indexX + (PRIME1 * indexY) + (PRIME2 * indexZ), seed );
-//    }
-//
-//    //-----------------------------------------------------------------------------------------------
-//    constexpr unsigned int Get4dNoiseUint( int indexX, int indexY, int indexZ, int indexT, unsigned int seed )
-//    {
-//        constexpr int PRIME1 = 198491317; // Large prime number with non-boring bits
-//        constexpr int PRIME2 = 6542989; // Large prime number with distinct and non-boring bits
-//        constexpr int PRIME3 = 357239; // Large prime number with distinct and non-boring bits
-//        return SquirrelNoise5( indexX + (PRIME1 * indexY) + (PRIME2 * indexZ) + (PRIME3 * indexT), seed );
-//    }
-//
-////-----------------------------------------------------------------------------------------------
+    public static long get2dNoise(int indexX, int indexY, long seed) {
+        int PRIME_NUMBER = 198491317;
+        return squirrelNoise5(indexX + (PRIME_NUMBER * indexY), seed);
+    }
+
+    public static long get3dNoise(int indexX, int indexY, int indexZ, long seed) {
+        int PRIME1 = 198491317;
+        int PRIME2 = 6542989;
+
+        return squirrelNoise5(indexX + (PRIME1 * indexY) + (PRIME2 * indexZ), seed);
+    }
+
+    public static long get4dNoise(int indexX, int indexY, int indexZ, int indexT, long seed) {
+        int PRIME1 = 198491317;
+        int PRIME2 = 6542989;
+        int PRIME3 = 357239;
+        return squirrelNoise5(indexX + (PRIME1 * indexY) + (PRIME2 * indexZ) + (PRIME3 * indexT), seed);
+    }
+
     public static float get1dNoiseZeroToOne(int index, long seed) {
         return (float) (ONE_OVER_MAX_UINT * (double) squirrelNoise5(index, seed));
     }
-//
-////-----------------------------------------------------------------------------------------------
-//    constexpr float Get2dNoiseZeroToOne( int indexX, int indexY, unsigned int seed )
-//    {
-//        constexpr double ONE_OVER_MAX_UINT = (1.0 / (double) 0xFFFFFFFF);
-//        return (float)( ONE_OVER_MAX_UINT * (double) Get2dNoiseUint( indexX, indexY, seed ) );
-//    }
-//
-////-----------------------------------------------------------------------------------------------
-//    constexpr float Get3dNoiseZeroToOne( int indexX, int indexY, int indexZ, unsigned int seed )
-//    {
-//        constexpr double ONE_OVER_MAX_UINT = (1.0 / (double) 0xFFFFFFFF);
-//        return (float)( ONE_OVER_MAX_UINT * (double) Get3dNoiseUint( indexX, indexY, indexZ, seed ) );
-//    }
-//
-////-----------------------------------------------------------------------------------------------
-//    constexpr float Get4dNoiseZeroToOne( int indexX, int indexY, int indexZ, int indexT, unsigned int seed )
-//    {
-//        constexpr double ONE_OVER_MAX_UINT = (1.0 / (double) 0xFFFFFFFF);
-//        return (float)( ONE_OVER_MAX_UINT * (double) Get4dNoiseUint( indexX, indexY, indexZ, indexT, seed ) );
-//    }
-//
-//
-////-----------------------------------------------------------------------------------------------
-//    constexpr float Get1dNoiseNegOneToOne( int index, unsigned int seed )
-//    {
-//        constexpr double ONE_OVER_MAX_INT = (1.0 / (double) 0x7FFFFFFF);
-//        return (float)( ONE_OVER_MAX_INT * (double) (int) SquirrelNoise5( index, seed ) );
-//    }
-//
-//
-////-----------------------------------------------------------------------------------------------
-//    constexpr float Get2dNoiseNegOneToOne( int indexX, int indexY, unsigned int seed )
-//    {
-//        constexpr double ONE_OVER_MAX_INT = (1.0 / (double) 0x7FFFFFFF);
-//        return (float)( ONE_OVER_MAX_INT * (double) (int) Get2dNoiseUint( indexX, indexY, seed ) );
-//    }
-//
-//
-////-----------------------------------------------------------------------------------------------
-//    constexpr float Get3dNoiseNegOneToOne( int indexX, int indexY, int indexZ, unsigned int seed )
-//    {
-//        constexpr double ONE_OVER_MAX_INT = (1.0 / (double) 0x7FFFFFFF);
-//        return (float)( ONE_OVER_MAX_INT * (double) (int) Get3dNoiseUint( indexX, indexY, indexZ, seed ) );
-//    }
-//
-//
-////-----------------------------------------------------------------------------------------------
-//    constexpr float Get4dNoiseNegOneToOne( int indexX, int indexY, int indexZ, int indexT, unsigned int seed )
-//    {
-//        constexpr double ONE_OVER_MAX_INT = (1.0 / (double) 0x7FFFFFFF);
-//        return (float)( ONE_OVER_MAX_INT * (double) (int) Get4dNoiseUint( indexX, indexY, indexZ, indexT, seed ) );
-//    }
+
+    public static float get2dNoiseZeroToOne( int indexX, int indexY, long seed )
+    {
+        double ONE_OVER_MAX_UINT = (1.0 / (double) 0xFFFFFFFF);
+        return (float)( ONE_OVER_MAX_UINT * (double) get2dNoise( indexX, indexY, seed ) );
+    }
+
+    public static float get3dNoiseZeroToOne( int indexX, int indexY, int indexZ, long seed )
+    {
+        double ONE_OVER_MAX_UINT = (1.0 / (double) 0xFFFFFFFF);
+        return (float)( ONE_OVER_MAX_UINT * (double) get3dNoise( indexX, indexY, indexZ, seed ) );
+    }
+
+    public static float get4dNoiseZeroToOne( int indexX, int indexY, int indexZ, int indexT, long seed )
+    {
+        double ONE_OVER_MAX_UINT = (1.0 / (double) 0xFFFFFFFF);
+        return (float)( ONE_OVER_MAX_UINT * (double) get4dNoise( indexX, indexY, indexZ, indexT, seed ) );
+    }
+
+
+    public static float Get1dNoiseNegOneToOne( int index, long seed )
+    {
+        double ONE_OVER_MAX_INT = (1.0 / (double) 0x7FFFFFFF);
+        return (float)( ONE_OVER_MAX_INT * (double) (int) squirrelNoise5( index, seed ) );
+    }
+
+
+    public static float get2dNoiseNegOneToOne( int indexX, int indexY, long seed )
+    {
+        double ONE_OVER_MAX_INT = (1.0 / (double) 0x7FFFFFFF);
+        return (float)( ONE_OVER_MAX_INT * (double) (int) get2dNoise( indexX, indexY, seed ) );
+    }
+
+
+    public static float get3dNoiseNegOneToOne( int indexX, int indexY, int indexZ, long seed )
+    {
+        double ONE_OVER_MAX_INT = (1.0 / (double) 0x7FFFFFFF);
+        return (float)( ONE_OVER_MAX_INT * (double) (int) get3dNoise( indexX, indexY, indexZ, seed ) );
+    }
+
+
+    public static float get4dNoiseNegOneToOne( int indexX, int indexY, int indexZ, int indexT, long seed )
+    {
+        double ONE_OVER_MAX_INT = (1.0 / (double) 0x7FFFFFFF);
+        return (float)( ONE_OVER_MAX_INT * (double) (int) get4dNoise( indexX, indexY, indexZ, indexT, seed ) );
+    }
 
 
 }
