@@ -1,8 +1,8 @@
 package thtroyer.squirrelnoise;
 
 public class SquirrelNoise {
-    private static double ONE_OVER_MAX_UINT = (1.0 / (double) Long.parseLong("ffffffff", 16));
-    private static double ONE_OVER_MAX_INT = (1.0 / (double) Long.parseLong("7fffffff", 16));
+    private static final double ONE_OVER_MAX_UINT = (1.0 / (double) Long.parseLong("ffffffff", 16));
+    private static final double ONE_OVER_MAX_INT = (1.0 / (double) Long.parseLong("7fffffff", 16));
 
     /**
      * Based on squirrelNoise5 by Squirrel Eiserloh, implemented in C++.
@@ -61,8 +61,6 @@ public class SquirrelNoise {
 
         return mangledBits;
     }
-
-    //todo: test
 
     /**
      * @return long, but returns 32bit unsigned in range, 0-4294967295
