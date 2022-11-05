@@ -2,6 +2,7 @@ package thtroyer.squirrelnoise;
 
 public class SquirrelNoise {
     private static double ONE_OVER_MAX_UINT = (1.0 / (double) Long.parseLong("ffffffff", 16));
+    private static double ONE_OVER_MAX_INT = (1.0 / (double) Long.parseLong("7fffffff", 16));
 
     /**
      * Based on squirrelNoise5 by Squirrel Eiserloh, implemented in C++.
@@ -93,51 +94,36 @@ public class SquirrelNoise {
         return (float) (ONE_OVER_MAX_UINT * (double) squirrelNoise5(index, seed));
     }
 
-    public static float get2dNoiseZeroToOne( int indexX, int indexY, long seed )
-    {
-        double ONE_OVER_MAX_UINT = (1.0 / (double) 0xFFFFFFFF);
-        return (float)( ONE_OVER_MAX_UINT * (double) get2dNoise( indexX, indexY, seed ) );
+    public static float get2dNoiseZeroToOne(int indexX, int indexY, long seed) {
+        return (float) (ONE_OVER_MAX_UINT * (double) get2dNoise(indexX, indexY, seed));
     }
 
-    public static float get3dNoiseZeroToOne( int indexX, int indexY, int indexZ, long seed )
-    {
-        double ONE_OVER_MAX_UINT = (1.0 / (double) 0xFFFFFFFF);
-        return (float)( ONE_OVER_MAX_UINT * (double) get3dNoise( indexX, indexY, indexZ, seed ) );
+    public static float get3dNoiseZeroToOne(int indexX, int indexY, int indexZ, long seed) {
+        return (float) (ONE_OVER_MAX_UINT * (double) get3dNoise(indexX, indexY, indexZ, seed));
     }
 
-    public static float get4dNoiseZeroToOne( int indexX, int indexY, int indexZ, int indexT, long seed )
-    {
-        double ONE_OVER_MAX_UINT = (1.0 / (double) 0xFFFFFFFF);
-        return (float)( ONE_OVER_MAX_UINT * (double) get4dNoise( indexX, indexY, indexZ, indexT, seed ) );
+    public static float get4dNoiseZeroToOne(int indexX, int indexY, int indexZ, int indexT, long seed) {
+        return (float) (ONE_OVER_MAX_UINT * (double) get4dNoise(indexX, indexY, indexZ, indexT, seed));
     }
 
 
-    public static float Get1dNoiseNegOneToOne( int index, long seed )
-    {
-        double ONE_OVER_MAX_INT = (1.0 / (double) 0x7FFFFFFF);
-        return (float)( ONE_OVER_MAX_INT * (double) (int) squirrelNoise5( index, seed ) );
+    public static float get1dNoiseNegOneToOne(int index, long seed) {
+        return (float) (ONE_OVER_MAX_INT * (double) (int) squirrelNoise5(index, seed));
     }
 
 
-    public static float get2dNoiseNegOneToOne( int indexX, int indexY, long seed )
-    {
-        double ONE_OVER_MAX_INT = (1.0 / (double) 0x7FFFFFFF);
-        return (float)( ONE_OVER_MAX_INT * (double) (int) get2dNoise( indexX, indexY, seed ) );
+    public static float get2dNoiseNegOneToOne(int indexX, int indexY, long seed) {
+        return (float) (ONE_OVER_MAX_INT * (double) (int) get2dNoise(indexX, indexY, seed));
     }
 
 
-    public static float get3dNoiseNegOneToOne( int indexX, int indexY, int indexZ, long seed )
-    {
-        double ONE_OVER_MAX_INT = (1.0 / (double) 0x7FFFFFFF);
-        return (float)( ONE_OVER_MAX_INT * (double) (int) get3dNoise( indexX, indexY, indexZ, seed ) );
+    public static float get3dNoiseNegOneToOne(int indexX, int indexY, int indexZ, long seed) {
+        return (float) (ONE_OVER_MAX_INT * (double) (int) get3dNoise(indexX, indexY, indexZ, seed));
     }
 
 
-    public static float get4dNoiseNegOneToOne( int indexX, int indexY, int indexZ, int indexT, long seed )
-    {
-        double ONE_OVER_MAX_INT = (1.0 / (double) 0x7FFFFFFF);
-        return (float)( ONE_OVER_MAX_INT * (double) (int) get4dNoise( indexX, indexY, indexZ, indexT, seed ) );
+    public static float get4dNoiseNegOneToOne(int indexX, int indexY, int indexZ, int indexT, long seed) {
+        return (float) (ONE_OVER_MAX_INT * (double) (int) get4dNoise(indexX, indexY, indexZ, indexT, seed));
     }
-
 
 }
