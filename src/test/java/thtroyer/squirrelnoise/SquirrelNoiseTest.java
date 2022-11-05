@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static thtroyer.squirrelnoise.SquirrelNoise.get1dNoiseZeroToOne;
 import static thtroyer.squirrelnoise.SquirrelNoise.squirrelNoise5;
 
 public class SquirrelNoiseTest {
@@ -30,8 +31,12 @@ public class SquirrelNoiseTest {
                 .isEqualTo(3761360600L);
         assertThat(squirrelNoise5(-19238,28382))
                 .isEqualTo(2417081196L);
+    }
 
-
+    @Test
+    public void testSquirrelNoise5Zeroto1() {
+        assertThat(get1dNoiseZeroToOne(0,0))
+                .isEqualTo(0.0877856f);
     }
 
     @Test
