@@ -1,16 +1,17 @@
 package thtroyer.squirrelnoise;
 
+/**
+ * Based on squirrelNoise5 by Squirrel Eiserloh, implemented in C++.
+ * Original version available here: http://eiserloh.net/noise/squirrelNoise5.hpp
+ *
+ * Since Java has no unsigned int used in the original algorithm, a long is being used, which is
+ * regularly masked back to the original 32-bit int size.
+ */
 public class SquirrelNoise {
     private static final double ONE_OVER_MAX_UINT = (1.0 / (double) Long.parseLong("ffffffff", 16));
     private static final double ONE_OVER_MAX_INT = (1.0 / (double) Long.parseLong("7fffffff", 16));
 
     /**
-     * Based on squirrelNoise5 by Squirrel Eiserloh, implemented in C++.
-     * Original version available here: * http://eiserloh.net/noise/squirrelNoise5.hpp
-     * <p>
-     * Since Java has no unsigned int used in the original algorithm, a long is being used, which is
-     * regularly masked back to the original 32-bit int size.
-     *
      * @param positionX signed int value for position
      * @param seed      unsigned int value between 0 and 4294967295
      * @return random value between 0 and 4294967295
