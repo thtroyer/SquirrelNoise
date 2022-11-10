@@ -17,10 +17,10 @@ public class SquirrelNoise {
      * @return random value between 0 and 4294967295
      */
     public static long squirrelNoise5(int positionX, long seed) {
-        if (seed < 0 || seed > 4294967295L) {
-            // for compatibility with C version.  May remove later.
-            throw new RuntimeException("seed out of range.");
-        }
+//        if (seed < 0 || seed > 4294967295L) {
+//            // for compatibility with C version.  May remove later.
+//            throw new RuntimeException("seed out of range.");
+//        }
 
         long bitMask = Long.parseLong("ffffffff", 16);
 
