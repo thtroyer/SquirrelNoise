@@ -2,7 +2,7 @@ package thtroyer.squirrelnoise;
 
 /**
  * Based on squirrelNoise5 by Squirrel Eiserloh, implemented in C++.
- * Original version available here: http://eiserloh.net/noise/squirrelNoise5.hpp
+ * Original version available here: <a href="http://eiserloh.net/noise/squirrelNoise5.hpp">...</a>
  *
  * Since Java has no unsigned int used in the original algorithm, a long is being used, which is
  * regularly masked back to the original 32-bit int size.
@@ -17,10 +17,6 @@ public class SquirrelNoise {
      * @return random value between 0 and 4294967295
      */
     public static long squirrelNoise5(int positionX, long seed) {
-//        if (seed < 0 || seed > 4294967295L) {
-//            // for compatibility with C version.  May remove later.
-//            throw new RuntimeException("seed out of range.");
-//        }
 
         long bitMask = Long.parseLong("ffffffff", 16);
 
