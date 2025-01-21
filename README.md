@@ -11,3 +11,4 @@ GDC talk here:
 
 Original (C++) version:
 http://eiserloh.net/noise/SquirrelNoise5.hpp
+
